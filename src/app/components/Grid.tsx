@@ -1,9 +1,11 @@
 'use client'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { setOriginalNode } from "typescript"
+import { changeGridState } from "./game"
 import './Grid.css'
 
-const rows = 5
-const cols = 5
+export const rows = 5
+export const cols = 5
 
 const randomGrid = () => {
   const grid = []
@@ -21,6 +23,11 @@ export const Grid = () => {
   const [grid, setGrid] = useState(randomGrid())
   const [isRunning, setIsRunning] = useState(false)
 
+  const runSimulation = () => {
+    console.log('Im here!!!')
+    setGrid(changeGridState(grid))
+  }
+
   return (
     <>
       <div>
@@ -28,7 +35,10 @@ export const Grid = () => {
           style={{ marginBottom: 20 ,padding: 20, fontSize: 20 }}
           onClick={() => {
             setIsRunning(!isRunning)
-          } }>
+            setInterval(() => {
+              runSimulation()
+            }, 1000)
+          }}>
           {isRunning ? "Stop" : "Start"}
         </button>
       </div>
