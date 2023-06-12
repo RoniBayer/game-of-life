@@ -23,10 +23,16 @@ export const Grid = () => {
   const [grid, setGrid] = useState(randomGrid())
   const [isRunning, setIsRunning] = useState(false)
 
-  const runSimulation = () => {
-    console.log('Im here!!!')
-    setGrid(changeGridState(grid))
-  }
+  useEffect(() => {
+    if (isRunning) {
+          const timer = setTimeout(() => {
+      const g = changeGridState(grid)
+      setGrid(g)
+    }, 1000)
+    return () => clearTimeout(timer)
+    } 
+
+  }, [grid, isRunning])
 
   return (
     <>
@@ -35,9 +41,6 @@ export const Grid = () => {
           style={{ marginBottom: 20 ,padding: 20, fontSize: 20 }}
           onClick={() => {
             setIsRunning(!isRunning)
-            setInterval(() => {
-              runSimulation()
-            }, 1000)
           }}>
           {isRunning ? "Stop" : "Start"}
         </button>
