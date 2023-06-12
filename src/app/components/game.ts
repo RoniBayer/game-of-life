@@ -1,3 +1,4 @@
+import { Console } from 'console'
 import { rows, cols } from './Grid'
 
 const positions = [
@@ -33,5 +34,6 @@ export function changeGridState(g: number[][]){
   const next = g.map((row, i) => {
     return row.map((cell, j) => nextMove(g, j ,i))
   })
+  console.log(next)
   return next
 }
