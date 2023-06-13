@@ -38,11 +38,16 @@ export const Grid = () => {
     <>
       <div>
         <button
-          style={{ marginBottom: 20 ,padding: 20, fontSize: 20 }}
+          style={{ margin: 20 ,padding: 20, fontSize: 20 }}
           onClick={() => {
             setIsRunning(!isRunning)
           }}>
           {isRunning ? "Stop" : "Start"}
+        </button>
+        <button
+        style={{ margin: 20 ,padding: 20, fontSize: 20 }}
+        onClick={() => setGrid(randomGrid)}>
+          Reset
         </button>
       </div>
       <div>

@@ -1,4 +1,3 @@
-import { Console } from 'console'
 import { rows, cols } from './Grid'
 
 const positions = [
